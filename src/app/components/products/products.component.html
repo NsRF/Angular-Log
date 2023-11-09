@@ -1,0 +1,22 @@
+<p-table [value]="products">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Nome</th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+    <tr *ngIf="!editEnabled">
+      <td>{{product.name}}</td>
+    </tr>
+    <td *ngIf="!editEnabled">
+      <button (click)="editProduct()">Editar</button>
+    </td>
+    <tr *ngIf="editEnabled">
+      <td><input [(ngModel)]="product.name" type="text"></td>
+    </tr>
+    <td *ngIf="editEnabled">
+      <button (click)="saveProduct(product)">Salvar</button>
+    </td>
+  </ng-template>
+</p-table>
