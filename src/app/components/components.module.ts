@@ -10,6 +10,8 @@ import {IndexComponent} from "./index/index.component";
 import {MenuModule} from "primeng/menu";
 import {BadgeModule} from "primeng/badge";
 import {TabMenuModule} from "primeng/tabmenu";
+import {InputTextModule} from "primeng/inputtext";
+import {TabViewModule} from "primeng/tabview";
 
 
 
@@ -23,7 +25,9 @@ import {TabMenuModule} from "primeng/tabmenu";
     RippleModule,
     MenuModule,
     BadgeModule,
-    TabMenuModule
+    TabMenuModule,
+    InputTextModule,
+    TabViewModule
   ],
   exports: [
     UserComponent,
