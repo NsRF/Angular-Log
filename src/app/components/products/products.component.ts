@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductsInterface} from "../../interfaces/products.interface";
 import {ProductsService} from "../../services/products/products.service";
-import {UserInterface} from "../../interfaces/user.interface";
 import {Router} from "@angular/router";
 
 @Component({
@@ -26,8 +25,8 @@ export class ProductsComponent implements OnInit {
     this.editEnabled = !this.editEnabled;
   }
 
-  saveProduct(user: UserInterface) {
-    this.productsService.updateUser(user).subscribe(res => window.location.reload());
+  saveProduct(product: ProductsInterface) {
+    this.productsService.updateProduct(product).subscribe(res => window.location.reload());
   }
 
   redirectToHome() {
