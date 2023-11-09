@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ProductsInterface} from "../../interfaces/products.interface";
 import {ProductsService} from "../../services/products/products.service";
 import {UserInterface} from "../../interfaces/user.interface";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-products',
@@ -11,7 +12,7 @@ import {UserInterface} from "../../interfaces/user.interface";
 export class ProductsComponent implements OnInit {
   products: ProductsInterface[] = [];
   editEnabled = false;
-  constructor(private productsService: ProductsService) { }
+  constructor(private productsService: ProductsService, private router: Router) { }
 
   ngOnInit(): void {
     this.getAllProducts()
@@ -27,6 +28,10 @@ export class ProductsComponent implements OnInit {
 
   saveProduct(user: UserInterface) {
     this.productsService.updateUser(user).subscribe(res => window.location.reload());
+  }
+
+  redirectToHome() {
+    this.router.navigate(['/'])
   }
 
 }

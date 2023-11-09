@@ -1,25 +1,28 @@
-<p-table [value]="users">
-  <ng-template pTemplate="header">
-    <tr>
-      <th>Nome</th>
-      <th>Email</th>
-      <th></th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-user>
-    <tr *ngIf="!editEnabled">
-      <td>{{user.name}}</td>
-      <td>{{user.email}}</td>
-    </tr>
-    <td *ngIf="!editEnabled">
-      <button (click)="editUser()">Editar</button>
-    </td>
-    <tr *ngIf="editEnabled">
-      <td><input [(ngModel)]="user.name" type="text"></td>
-      <td><input [(ngModel)]="user.email" type="text"></td>
-    </tr>
-    <td *ngIf="editEnabled">
-      <button (click)="saveUser(user)">Salvar</button>
-    </td>
-  </ng-template>
-</p-table>
+<div>
+  <button pButton pRipple type="button" class="p-button-success" (click)="redirectToHome()" label="Pagina inicial"></button>
+  <p-table [value]="users">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr *ngIf="!editEnabled">
+        <td>{{user.name}}</td>
+        <td>{{user.email}}</td>
+      </tr>
+      <td *ngIf="!editEnabled">
+        <button pButton (click)="editUser()" pRipple type="button" label="Editar"></button>
+      </td>
+      <tr *ngIf="editEnabled">
+        <td><input [(ngModel)]="user.name" type="text"></td>
+        <td><input [(ngModel)]="user.email" type="text"></td>
+      </tr>
+      <td *ngIf="editEnabled">
+        <button pButton (click)="saveUser(user)" class="p-button-warning" pRipple type="button" label="Salvar"></button>
+      </td>
+    </ng-template>
+  </p-table>
+</div>
