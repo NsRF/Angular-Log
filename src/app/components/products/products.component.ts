@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductsInterface} from "../../interfaces/products.interface";
 import {ProductsService} from "../../services/products/products.service";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-products',
@@ -10,11 +9,10 @@ import {Router} from "@angular/router";
 })
 export class ProductsComponent implements OnInit {
   products: ProductsInterface[] = [];
-  editEnabled = false;
   clonedProducts: { [s: string]: ProductsInterface; } = {};
   products2: ProductsInterface[] = [];
 
-  constructor(private productsService: ProductsService, private router: Router) { }
+  constructor(private productsService: ProductsService) { }
 
   ngOnInit(): void {
     this.getAllProducts()

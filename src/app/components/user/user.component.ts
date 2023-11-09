@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../../services/users/user.service";
 import {UserInterface} from "../../interfaces/user.interface";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user',
@@ -10,10 +9,9 @@ import {Router} from "@angular/router";
 })
 export class UserComponent implements OnInit {
   users: UserInterface[] = [];
-  editEnabled = false;
   clonedUsers: { [s: string]: UserInterface; } = {};
   users2: UserInterface[] = [];
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
     this.getAllUsers();
