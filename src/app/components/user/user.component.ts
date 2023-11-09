@@ -11,6 +11,8 @@ import {Router} from "@angular/router";
 export class UserComponent implements OnInit {
   users: UserInterface[] = [];
   editEnabled = false;
+  clonedUsers: { [s: string]: UserInterface; } = {};
+  users2: UserInterface[] = [];
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
@@ -20,17 +22,17 @@ export class UserComponent implements OnInit {
   getAllUsers(): void {
     this.userService.returnAllUsers().subscribe(res => this.users = res);
   }
-
-  editUser() {
-    this.editEnabled = !this.editEnabled;
+  onRowEditInit(user: UserInterface) {
+    this.clonedUsers[user.id] = {...user};
   }
 
-  saveUser(user: UserInterface) {
-    this.userService.updateUser(user).subscribe(res => window.location.reload());
+  onRowEditSave(user: UserInterface) {
+    this.userService.updateUser(user).subscribe(x => console.log(x));
   }
 
-  redirectToHome() {
-    this.router.navigate(['/'])
+  onRowEditCancel(user: UserInterface  , index: number) {
+    this.users2[index] = this.clonedUsers[user.id];
+    delete this.clonedUsers[user.id];
   }
 
 }

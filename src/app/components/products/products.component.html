@@ -1,21 +1,32 @@
-<div>
-  <p-table [value]="products">
+<div class="card">
+  <p-table [value]="products" dataKey="id" editMode="row" [tableStyle]="{'min-width': '50rem'}">
     <ng-template pTemplate="header">
       <tr>
-        <th>Nome</th>
-        <th></th>
+        <th style="width:20%">Name</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-product>
-      <tr *ngIf="!editEnabled">
-        <td>{{product.name}}</td>
-        <button pButton (click)="editProduct()" pRipple type="button" label="Editar"></button>
-      </tr>
-      <tr *ngIf="editEnabled">
-        <td><input pInputText [(ngModel)]="product.name" type="text"></td>
-        <button pButton (click)="saveProduct(product)" class="p-button-warning" pRipple type="button" label="Salvar"></button>
+    <ng-template pTemplate="body" let-product let-editing="editing" let-ri="rowIndex">
+      <tr [pEditableRow]="product">
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="product.name" required>
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{product.name}}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+        </td>
+        <td>
+          <div class="flex align-items-center justify-content-center gap-2">
+            <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(product)" class="p-button-rounded p-button-text"></button>
+            <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(product)" class="p-button-rounded p-button-text p-button-success mr-2"></button>
+            <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(product, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
+          </div>
+        </td>
       </tr>
     </ng-template>
   </p-table>
-
 </div>

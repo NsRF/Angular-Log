@@ -11,6 +11,9 @@ import {Router} from "@angular/router";
 export class ProductsComponent implements OnInit {
   products: ProductsInterface[] = [];
   editEnabled = false;
+  clonedProducts: { [s: string]: ProductsInterface; } = {};
+  products2: ProductsInterface[] = [];
+
   constructor(private productsService: ProductsService, private router: Router) { }
 
   ngOnInit(): void {
@@ -21,16 +24,17 @@ export class ProductsComponent implements OnInit {
     this.productsService.returnAllProducts().subscribe(res => this.products = res);
   }
 
-  editProduct() {
-    this.editEnabled = !this.editEnabled;
+  onRowEditInit(product: ProductsInterface) {
+    this.clonedProducts[product.id] = {...product};
   }
 
-  saveProduct(product: ProductsInterface) {
-    this.productsService.updateProduct(product).subscribe(res => window.location.reload());
+  onRowEditSave(product: ProductsInterface) {
+    this.productsService.updateProduct(product).subscribe(x => console.log(x));
   }
 
-  redirectToHome() {
-    this.router.navigate(['/'])
+  onRowEditCancel(product: ProductsInterface  , index: number) {
+    this.products2[index] = this.clonedProducts[product.id];
+    delete this.clonedProducts[product.id];
   }
 
 }
