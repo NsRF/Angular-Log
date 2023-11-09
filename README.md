@@ -2,9 +2,30 @@
 
 
 ## Development server
+Execute os comandos abaixo para iniciar o front-end localmente.
+```bash
+  npm install
+```
+Realize o build do projeto
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+```bash
+  ng serve
+```
+## Instalação de dependencias
 
-## Build
+Execute o comando abaixo para instalação de todas dependencias necessárias para o funcionamento do FrontEnd.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```bash
+  npm install
+```
+Realize o build do projeto
+
+```bash
+  ng build
+```
+## Variáveis de Ambiente
+
+Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de ambiente no seu environment.ts
+
+`baseUrlApi`
+
